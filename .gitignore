@@ -5,6 +5,8 @@
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 .hg
 .hgtags
+[Oo]bjs/[Ll]ib/openssl*/test/
+[Oo]bjs/[Ll]ib/openssl*/openssl/
 # User-specific files
 *.rsuser
 *.suo
