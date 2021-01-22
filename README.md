@@ -1,7 +1,7 @@
 # nginx 1.19.7
-[Source](http://hg.nginx.org/nginx/rev/61d0df8fcc7c)
+[Source code](http://hg.nginx.org/nginx/rev/61d0df8fcc7c)
 
-nginx for Windows with a few extra modules:
+### nginx for Windows with a few extra modules:
 
 - --with-cc=cl 
 - --builddir=objs 
@@ -44,3 +44,11 @@ nginx for Windows with a few extra modules:
 - --with-stream_ssl_preread_module 
 - --add-module=objs/lib/nginx-rtmp-module 
 - --add-module=objs/lib/nginx-goodies-nginx-sticky-module-ng-08a395c66e42
+
+### Easy way
+
+Check out the "Releases" tab, download and extract!
+
+### Hard way
+
+[Follow this guide.](HOWTO.md)
