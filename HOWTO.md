@@ -8,6 +8,7 @@
 2. Download and install [Mercurial MSI installer](https://www.mercurial-scm.org/downloads)
 3. Download and install Microsoft Visual Studio Build Tools 20XX. I used 2017, but you can probably use 2019 or higher when they come out.
 4. Download and install [Git for Windows](https://git-scm.com/download/win)
+5. Download or compile sed for windows. Look at this [SO](https://stackoverflow.com/a/127567/6718963) entry for options or you may use what I use [here](https://github.com/mbuilov/sed-windows).
 
 ## Steps
 

@@ -8,7 +8,7 @@
 #include <ngx_config.h>
 #include <ngx_core.h>
 #include <ngx_http.h>
-
+#pragma warning( disable : 4013)
 
 typedef struct {
     size_t      sbrk_size;
