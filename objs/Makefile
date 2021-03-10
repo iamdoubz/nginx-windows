@@ -11,7 +11,7 @@ ALL_INCS = -I src/core \
 	-I src/os/win32 \
 	-I objs/lib/nginx-rtmp-module \
 	-I objs/lib/pcre-8.44 \
-	-I objs/lib/openssl-1.1.1i/openssl/include \
+	-I objs/lib/openssl-1.1.1j/openssl/include \
 	-I objs/lib/zlib-1.2.11 \
 	-I objs \
 	-I src/http \
@@ -78,7 +78,7 @@ CORE_DEPS = src/core/nginx.h \
 	src/event/ngx_event_openssl.h \
 	src/core/ngx_regex.h \
 	objs/lib/pcre-8.44/pcre.h \
-	objs/lib/openssl-1.1.1i/openssl/include/openssl/ssl.h \
+	objs/lib/openssl-1.1.1j/openssl/include/openssl/ssl.h \
 	objs/ngx_auto_config.h \
 	objs/ngx_config.pch
 
@@ -89,7 +89,7 @@ CORE_INCS = -I src/core \
 	-I src/os/win32 \
 	-I objs/lib/nginx-rtmp-module \
 	-I objs/lib/pcre-8.44 \
-	-I objs/lib/openssl-1.1.1i/openssl/include \
+	-I objs/lib/openssl-1.1.1j/openssl/include \
 	-I objs/lib/zlib-1.2.11 \
 	-I objs
 
@@ -295,6 +295,7 @@ objs/nginx.exe:	objs/src/core/nginx.obj \
 	objs/src/mail/ngx_mail_smtp_handler.obj \
 	objs/src/mail/ngx_mail_auth_http_module.obj \
 	objs/src/mail/ngx_mail_proxy_module.obj \
+	objs/src/mail/ngx_mail_realip_module.obj \
 	objs/src/stream/ngx_stream.obj \
 	objs/src/stream/ngx_stream_variables.obj \
 	objs/src/stream/ngx_stream_script.obj \
@@ -513,6 +514,7 @@ objs/nginx.exe:	objs/src/core/nginx.obj \
 	objs/src/mail/ngx_mail_smtp_handler.obj 
 	objs/src/mail/ngx_mail_auth_http_module.obj 
 	objs/src/mail/ngx_mail_proxy_module.obj 
+	objs/src/mail/ngx_mail_realip_module.obj 
 	objs/src/stream/ngx_stream.obj 
 	objs/src/stream/ngx_stream_variables.obj 
 	objs/src/stream/ngx_stream_script.obj 
@@ -573,7 +575,7 @@ objs/nginx.exe:	objs/src/core/nginx.obj \
 	objs/addon/nginx-goodies-nginx-sticky-module-ng-08a395c66e42/ngx_http_sticky_module.obj 
 	objs/addon/nginx-goodies-nginx-sticky-module-ng-08a395c66e42/ngx_http_sticky_misc.obj 
 	objs/ngx_modules.obj 
-	kernel32.lib user32.lib advapi32.lib ws2_32.lib objs/lib/pcre-8.44/pcre.lib objs/lib/openssl-1.1.1i/openssl/lib/libssl.lib objs/lib/openssl-1.1.1i/openssl/lib/libcrypto.lib gdi32.lib crypt32.lib objs/lib/zlib-1.2.11/zlib.lib 
+	kernel32.lib user32.lib advapi32.lib ws2_32.lib objs/lib/pcre-8.44/pcre.lib objs/lib/openssl-1.1.1j/openssl/lib/libssl.lib objs/lib/openssl-1.1.1j/openssl/lib/libcrypto.lib gdi32.lib crypt32.lib objs/lib/zlib-1.2.11/zlib.lib 
 	objs/nginx.res -link -verbose:lib -debug objs/ngx_pch.obj
 	
 <<
@@ -1658,6 +1660,13 @@ objs/src/mail/ngx_mail_proxy_module.obj:	$(CORE_DEPS) $(MAIL_DEPS) \
 		src/mail/ngx_mail_proxy_module.c
 
 
+objs/src/mail/ngx_mail_realip_module.obj:	$(CORE_DEPS) $(MAIL_DEPS) \
+	src/mail/ngx_mail_realip_module.c
+	$(CC) -c $(CFLAGS) -Yungx_config.h -Fpobjs/ngx_config.pch $(ALL_INCS) \
+		-Foobjs/src/mail/ngx_mail_realip_module.obj \
+		src/mail/ngx_mail_realip_module.c
+
+
 objs/src/stream/ngx_stream.obj:	$(CORE_DEPS) $(STREAM_DEPS) \
 	src/stream/ngx_stream.c
 	$(CC) -c $(CFLAGS) -Yungx_config.h -Fpobjs/ngx_config.pch $(ALL_INCS) \
@@ -2086,8 +2095,8 @@ objs/lib/pcre-8.44/pcre.h:
 	$(MAKE) -f auto/lib/pcre/makefile.msvc PCRE="objs/lib/pcre-8.44" pcre.h
 
 
-objs/lib/openssl-1.1.1i/openssl/include/openssl/ssl.h:	objs/Makefile
-	$(MAKE) -f auto/lib/openssl/makefile.msvc					OPENSSL="objs/lib/openssl-1.1.1i" OPENSSL_OPT="no-asm no-tests -D_WIN32_WINNT=0x0501"
+objs/lib/openssl-1.1.1j/openssl/include/openssl/ssl.h:	objs/Makefile
+	$(MAKE) -f auto/lib/openssl/makefile.msvc					OPENSSL="objs/lib/openssl-1.1.1j" OPENSSL_OPT="no-asm no-tests -D_WIN32_WINNT=0x0501"
 
 
 objs/lib/zlib-1.2.11/zlib.lib:	objs/Makefile
